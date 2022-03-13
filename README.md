@@ -3,7 +3,7 @@
 </div>
 
 
-## 1.swagger api문서
+## 1.Swagger api문서
 
     - http://localhost/swagger-ui/
 
@@ -37,6 +37,9 @@
 
 ## 4.주요 메시지
 
+    message(전체 처리 결과 메시지)
+	- Processing completed : 처리 완료
+
     investStatus(투자 모집 상태)
 	- Recruitment : 모집중
 	- Recruitment completed : 모집 완료
@@ -45,14 +48,15 @@
 	- Sold out : 마감
 	- Done, more investment is possible : 완료, 추가 투자 가능
 	- Investment limit exceeded : 모집 금액 초과
+	
+    
+## 5. 전체 투자 상품 조회 예제
 
-
-## 5. 전체 투자 상품 조회
-    - Request 
+    - `Request`
 	Method : GET
 	URI : localhost/productList
 
-    - Response
+    - `Response case 1` 현재 일시 기준 유효한 2건만 조회 됨
 	{
 	  "code": "00",
 	  "message": "Processing completed",
@@ -80,93 +84,102 @@
 	  ]
 	}
 
-## 2. 공지 생성
 
-Method : POST
-URL : http://localhost:8080/spreading
+## 6. 투자하기 예제
 
-[입력]
-HEADER
-key/value : Content-Type / application/json
-key/value : X-ROOM-ID / aa
-key/value : X-USER-ID / 77
-
-BODY
-{
-   "amount": "10000",
-   "count": "3"
-}
-
-[출력]
-{
-    "code": "00",
-    "message": "Success",
-    "body": "GGM"
-}
-
-    - `POST`
-    - `localhost:8080/notice`
-    - `헤더 부분은 놔두고 Body의 form-data 영역만 기재`
-    - `Body form-data 영역 KEY : 'json_str', VALUE : 하단 포맷 참조`
-
-      {
-        "title" : "공지제목",
-	"author" : "작성자",
-        "content" : "공지내용",
-        "startTime" : "202112010000",
-        "endTime" : "202112021000",
-        "attachments" : [
-          {
-            "name" : "실제 파일명1"
-          },
-          {
-            "name" : "실제 파일명2"
-          }
-        ]
-      }
-
-     - `Body 영역 KEY : 'file'로 기재하고 타입을 파일로 선택, VALUE : 실제 파일 선택하고 상단의 '실제 파일명'을 동일하게 맞출것, 복수 기재 가능`
-     - `파일 저장 경로 d:\\temp\\spring_uploaded_files`
-
-
-## 6. 첨부파일 다운로드
-    - `GET`
-    - `localhost:8080/notice/download?filename={실제 파일명}`
-    - `파일 저장 경로 d:\\temp\\spring_uploaded_files`
-
-
-
-## 8. 공지 수정
-    - `PUT`
-    - `localhost:8080/notice/{noticeId}`
-    - `헤더 정보 - KEY : content-type, VALUE : application/json`
-    - `Body Raw 영역 하단 포맷 참조`
+    - `Request`
+	Method : POST
+	URI : localhost/invest
+	Header x-user-id : 11
+	Body :
 	{
-	  "title" : "공지제목 수정",
-	  "content" : "공지내용 수정",
-	  "author" : "작성자 수정",
-	  "startTime" : "202212010000",
-	  "endTime" : "202212021000"
+	  "amount": 10,
+	  "productId": 1
+	}
+
+    - `Response case 1` 투자 성공 한뒤 모집 금액 한도가 남은 경우
+	{
+	  "code": "00",
+	  "message": "Processing completed",
+	  "body": {
+	    "resultStatus": "SUCCESS",
+	    "resultMsg": "Done, more investment is possible",
+	    "investAmount": 10
+	  }
+	}
+
+    - `Response case 2` 투자 성공 한뒤 모집 마감 되는 경우
+	{
+	  "code": "00",
+	  "message": "Processing completed",
+	  "body": {
+	    "resultStatus": "SUCCESS",
+	    "resultMsg": "Sold out",
+	    "investAmount": 90
+	  }
+	}
+
+    - `Response case 3` 투자 실패 처리(모집 완료는 아니나 총 모집 금액을 초과해서 투자하려 한 경우)
+	{
+	  "code": "00",
+	  "message": "Processing completed",
+	  "body": {
+	    "resultStatus": "FAIL",
+	    "resultMsg": "Investment limit exceeded",
+	    "investAmount": 0
+	  }
+	}
+
+    - `Response case 4` 투자 실패 처리(모집 완료 후 투자하려 한 경우)
+	{
+	  "code": "00",
+	  "message": "Processing completed",
+	  "body": {
+	    "resultStatus": "FAIL",
+	    "resultMsg": "Sold out",
+	    "investAmount": 0
+	  }
 	}
 
 
-## 9. 첨부파일 id별 수정(교체)
-    - `PUT`
-    - `localhost:8080/notice/{noticeId}/attach/{attachmentId}`
-    - `헤더 부분은 놔두고 Body의 form-data 영역만 기재`
-    - `Body form-data 영역 KEY : 'json_str', VALUE : 하단 포맷 참조`
+## 7. 나의 투자 상품 조회 예제
+
+    - `Request`
+	Method : GET
+	URI : localhost/investList
+	Header x-user-id : 11
+
+    - `Response case 1` 특정 유저 아이디로 투자한 내역 전체 내림차순 조회
 	{
-	  "id" : 1,
-	  "name" : "수정 첨부 파일명"
+	  "code": "00",
+	  "message": "Processing completed",
+	  "body": [
+	    {
+	      "investId": 3,
+	      "userId": "11",
+	      "productId": 2,
+	      "amount": 30,
+	      "investingAt": "2022-03-14 00:14:18.152",
+	      "title": "부동산 포트폴리오",
+	      "totalInvestingAmount": 50
+	    },
+	    {
+	      "investId": 2,
+	      "userId": "11",
+	      "productId": 1,
+	      "amount": 90,
+	      "investingAt": "2022-03-14 00:10:06.719",
+	      "title": "개인 신용 포트폴리오",
+	      "totalInvestingAmount": 100
+	    },
+	    {
+	      "investId": 1,
+	      "userId": "11",
+	      "productId": 1,
+	      "amount": 10,
+	      "investingAt": "2022-03-13 23:59:10.882",
+	      "title": "개인 신용 포트폴리오",
+	      "totalInvestingAmount": 100
+	    }
+	  ]
 	}
-
-     - `Body 영역 KEY : 'file'로 기재하고 타입을 파일로 선택, VALUE : 실제 파일 선택하고 상단의 '수정 첨부 파일명'을 동일하게 맞출것`
-     - `파일 저장 경로 d:\\temp\\spring_uploaded_files`
-
-## 10. 첨부파일 ID별 삭제
-    - `DELETE`
-    - `localhost:8080/notice/{noticeId}/attach/{attachmentId}`
-
-## 11. 공지 전체 삭제
-    - `DELETE`
-    - `localhost:8080/notice/{noticeId}`
