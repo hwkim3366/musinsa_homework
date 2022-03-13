@@ -12,7 +12,7 @@
 
     - JDK : 1.8
     - Framework : Spring boot 2.5.5
-    - DB : H2
+    - Database : H2
 
 
 ## 3.핵심 전략
@@ -25,7 +25,60 @@
     - `나의 투자 상품 조회는 유저의 ID값을 받아 해당 유저의 전체 투자 내역 조회`
 
 
+## 4. 공지 조회
+    - `Method : GET`
+    - `URL : localhost/productList`
+    - `Response`
+	{
+	  "code": "00",
+	  "message": "Processing completed",
+	  "body": [
+	    {
+	      "productId": 1,
+	      "title": "개인 신용 포트폴리오",
+	      "totalInvestingAmount": 100,
+	      "currInvestingAmount": 0,
+	      "investerCount": 0,
+	      "investStatus": "Recruitment",
+	      "startedAt": "2022-02-01 11:11:11.111",
+	      "finishedAt": "2022-12-31 22:22:22.222"
+	    },
+	    {
+	      "productId": 2,
+	      "title": "부동산 포트폴리오",
+	      "totalInvestingAmount": 50,
+	      "currInvestingAmount": 0,
+	      "investerCount": 0,
+	      "investStatus": "Recruitment",
+	      "startedAt": "2022-01-01 00:00:00",
+	      "finishedAt": "2022-11-01 00:00:00"
+	    }
+	  ]
+	}
+
 ## 2. 공지 생성
+
+Method : POST
+URL : http://localhost:8080/spreading
+
+[입력]
+HEADER
+key/value : Content-Type / application/json
+key/value : X-ROOM-ID / aa
+key/value : X-USER-ID / 77
+
+BODY
+{
+   "amount": "10000",
+   "count": "3"
+}
+
+[출력]
+{
+    "code": "00",
+    "message": "Success",
+    "body": "GGM"
+}
 
     - `POST`
     - `localhost:8080/notice`
@@ -57,10 +110,7 @@
     - `localhost:8080/notice/download?filename={실제 파일명}`
     - `파일 저장 경로 d:\\temp\\spring_uploaded_files`
 
-## 7. 공지 조회
-    - `GET`
-    - `localhost:8080/notice/{noticeId}`
-    - `조회할때 마다 view count 증가`
+
 
 ## 8. 공지 수정
     - `PUT`
