@@ -5,14 +5,14 @@
 
 ## 1. Swagger api문서
 
-    - http://localhost/swagger-ui/
+    http://localhost/swagger-ui/
 
 
 ## 2. 개발 환경
 
-    - JDK : 1.8
-    - Framework : Spring boot 2.5.5
-    - Database : H2
+    JDK : 1.8
+    Framework : Spring boot 2.5.5
+    Database : H2
 
 
 ## 3. 핵심 전략
@@ -53,11 +53,11 @@
     
 ## 5. 전체 투자 상품 조회 Sample
 
-    - `Request`
+    `Request`
 	Method : GET
 	URI : localhost/productList
 
-    - `Response case 1` 현재 일시 기준 유효한 2건 모집중 상태로 조회
+    `Response case 1` 현재 일시 기준 유효한 2건 모집중 상태로 조회
 	{
 	  "code": "00",
 	  "message": "Processing completed",
@@ -85,7 +85,7 @@
 	  ]
 	}
 
-    - `Response case 2` 현재 일시 기준 유효한 2건중 한건은 모집 완료 상태로 조회
+    `Response case 2` 현재 일시 기준 유효한 2건중 한건은 모집 완료 상태로 조회
 	{
 	  "code": "00",
 	  "message": "Processing completed",
@@ -116,7 +116,7 @@
 
 ## 6. 투자하기 Sample
 
-    - `Request`
+    `Request`
 	Method : POST
 	URI : localhost/invest
 	Header x-user-id : 11
@@ -126,7 +126,7 @@
 	  "productId": 1
 	}
 
-    - `Response case 1` 투자 성공 한뒤 모집 금액 한도가 남은 경우
+    `Response case 1` 투자 성공 한뒤 모집 금액 한도가 남은 경우
 	{
 	  "code": "00",
 	  "message": "Processing completed",
@@ -137,7 +137,7 @@
 	  }
 	}
 
-    - `Response case 2` 투자 성공 한뒤 모집 마감 되는 경우
+    `Response case 2` 투자 성공 한뒤 모집 마감 되는 경우
 	{
 	  "code": "00",
 	  "message": "Processing completed",
@@ -148,7 +148,7 @@
 	  }
 	}
 
-    - `Response case 3` 투자 실패 처리(모집 완료는 아니나 총 모집 금액을 초과해서 투자하려 한 경우)
+    `Response case 3` 투자 실패 처리(모집 완료는 아니나 총 모집 금액을 초과해서 투자하려 한 경우)
 	{
 	  "code": "00",
 	  "message": "Processing completed",
@@ -159,7 +159,7 @@
 	  }
 	}
 
-    - `Response case 4` 투자 실패 처리(모집 완료 후 투자하려 한 경우)
+    `Response case 4` 투자 실패 처리(모집 완료 후 투자하려 한 경우)
 	{
 	  "code": "00",
 	  "message": "Processing completed",
@@ -173,12 +173,12 @@
 
 ## 7. 나의 투자 상품 조회 Sample
 
-    - `Request`
+    `Request`
 	Method : GET
 	URI : localhost/investList
 	Header x-user-id : 11
 
-    - `Response case 1` 특정 유저 아이디로 투자한 내역 전체 내림차순 조회
+    `Response case 1` 특정 유저 아이디로 투자한 내역 전체 내림차순 조회
 	{
 	  "code": "00",
 	  "message": "Processing completed",
