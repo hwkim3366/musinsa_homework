@@ -45,13 +45,14 @@
 
 ## 4.주요 메시지
 
-    - investStatus(투자 모집 상태)
-	Recruitment : 모집중
-	Recruitment completed : 모집 완료
-    - resultMsg(투자 처리 결과 메시지)
-	Sold out : 마감
-	Done, more investment is possible : 완료, 추가 투자 가능
-	Investment limit exceeded : 모집 금액 초과
+    investStatus(투자 모집 상태)
+	- Recruitment : 모집중
+	- Recruitment completed : 모집 완료
+
+    resultMsg(투자 처리 결과 메시지)
+	- Sold out : 마감
+	- Done, more investment is possible : 완료, 추가 투자 가능
+	- Investment limit exceeded : 모집 금액 초과
 
 
 ## 5. 전체 투자 상품 조회
