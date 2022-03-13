@@ -3,7 +3,7 @@
 </div>
 
 
-## 1. Swagger api문서
+## 1. Swagger api 문서
 
     http://localhost/swagger-ui/
 
@@ -35,23 +35,8 @@
     나의 투자 상품 조회
     - 나의 투자 상품 조회는 유저의 ID값을 받아 해당 유저의 전체 투자 내역 내림차순 조회
 
-
-## 4. 주요 메시지
-
-    message(전체 처리 결과 메시지)
-	- Processing completed : 처리 완료
-
-    investStatus(투자 모집 상태)
-	- Recruitment : 모집중
-	- Recruitment completed : 모집 완료
-
-    resultMsg(투자 처리 결과 메시지)
-	- Sold out : 마감
-	- Done, more investment is possible : 완료, 추가 투자 가능
-	- Investment limit exceeded : 모집 금액 초과
-	
     
-## 5. 전체 투자 상품 조회 Sample
+## 4. 전체 투자 상품 조회 처리 Sample
 
     `Request`
 	Method : GET
@@ -114,7 +99,7 @@
 	}
 
 
-## 6. 투자하기 Sample
+## 5. 투자하기 처리 Sample
 
     `Request`
 	Method : POST
@@ -171,7 +156,7 @@
 	}
 
 
-## 7. 나의 투자 상품 조회 Sample
+## 6. 나의 투자 상품 조회 처리 Sample
 
     `Request`
 	Method : GET
