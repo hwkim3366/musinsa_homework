@@ -16,7 +16,7 @@
 
 
 ## 3. 핵심 전략
-
+#DB
     - `투자 상품 마스터(PRODUCT)와 투자자별 투자 내역(INVEST_LIST) 테이블을 1:N 관계로 설계 생성`
     - `어플리케이션 기동시 data.sql의 insert script로 투자 상품 마스터 테이블에 초기 데이터 4건 삽입(현재 일시 기준 유효 2건, 무효 2건)`
 
@@ -131,7 +131,7 @@
 	  "message": "Processing completed",
 	  "body": {
 	    "resultStatus": "SUCCESS",
-	    "resultMsg": "Done, more investment is possible",
+	    "resultMsg": "Done, more investment is possible", --완료, 추가 투자 가능
 	    "investAmount": 10
 	  }
 	}
@@ -142,7 +142,7 @@
 	  "message": "Processing completed",
 	  "body": {
 	    "resultStatus": "SUCCESS",
-	    "resultMsg": "Sold out",
+	    "resultMsg": "Sold out", --마감
 	    "investAmount": 90
 	  }
 	}
@@ -153,7 +153,7 @@
 	  "message": "Processing completed",
 	  "body": {
 	    "resultStatus": "FAIL",
-	    "resultMsg": "Investment limit exceeded",
+	    "resultMsg": "Investment limit exceeded", --모집 금액 초과
 	    "investAmount": 0
 	  }
 	}
@@ -164,7 +164,7 @@
 	  "message": "Processing completed",
 	  "body": {
 	    "resultStatus": "FAIL",
-	    "resultMsg": "Sold out",
+	    "resultMsg": "Sold out", --마감
 	    "investAmount": 0
 	  }
 	}
