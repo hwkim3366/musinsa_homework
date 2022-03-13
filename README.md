@@ -3,19 +3,19 @@
 </div>
 
 
-## 1.Swagger api문서
+## 1. Swagger api문서
 
     - http://localhost/swagger-ui/
 
 
-## 2.개발 환경
+## 2. 개발 환경
 
     - JDK : 1.8
     - Framework : Spring boot 2.5.5
     - Database : H2
 
 
-## 3.핵심 전략
+## 3. 핵심 전략
 
     - `투자 상품 마스터(PRODUCT)와 투자자별 투자 내역(INVEST_LIST) 테이블을 1:N 관계로 설계 생성`
     - `어플리케이션 기동시 data.sql의 insert script로 투자 상품 마스터 테이블에 초기 데이터 4건 삽입(현재 일시 기준 유효 2건, 무효 2건)`
@@ -35,7 +35,7 @@
     - `junit을 활용하여 총 8가지 케이스를 단위 테스트 수행`
 
 
-## 4.주요 메시지
+## 4. 주요 메시지
 
     message(전체 처리 결과 메시지)
 	- Processing completed : 처리 완료
@@ -50,7 +50,7 @@
 	- Investment limit exceeded : 모집 금액 초과
 	
     
-## 5. 전체 투자 상품 조회 예제
+## 5. 전체 투자 상품 조회 Sample
 
     - `Request`
 	Method : GET
@@ -85,7 +85,7 @@
 	}
 
 
-## 6. 투자하기 예제
+## 6. 투자하기 Sample
 
     - `Request`
 	Method : POST
@@ -142,7 +142,7 @@
 	}
 
 
-## 7. 나의 투자 상품 조회 예제
+## 7. 나의 투자 상품 조회 Sample
 
     - `Request`
 	Method : GET
